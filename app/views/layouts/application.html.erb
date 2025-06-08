@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Todo App</title>
-    <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag 'application' %>
-  </head>
-  <body>
-    <header>
-      <h1>Todo Application</h1>
-      <p>Visit count: <%= @visit_count %></p>
-    </header>
+<head>
+  <title>Todo App</title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'application' %>
+</head>
+<body>
+  <header>
+    <h1>Todo Application</h1>
+    <p>Visit count: <%= @visit_count %></p>  <!-- Existing counter -->
+  </header>
+  
+  <main>
+    <%= yield %>
+  </main>
 
-    <main>
-      <%= yield %>
-    </main>
-
-    <footer>
-      <p>Last visited: <%= session[:last_visited] %></p>
-    </footer>
-  </body>
+  <footer>
+    <p>Last visited: <%= session[:last_visited] %></p>  <!-- Existing -->
+    <div class="visit-tracker">  <!-- Add this new block -->
+      <p>Total visits: <%= session[:visit_count] || 0 %></p>
+      <p>Formatted last visit: <%= formatted_last_visited %></p>
+    </div>
+  </footer>
+</body>
 </html>
